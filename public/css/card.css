@@ -1,0 +1,120 @@
+.card {
+  display: inline-block;
+  width: 360px;
+  height: 520px;
+  margin: 1.2%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  box-shadow: 0px 5px 5px rgba(167, 165, 165, 0.521);
+  border-radius: 0px 0px 10px 10px;
+  background-color: #fff;
+  border-bottom: 3px solid rgb(0, 163, 192);
+  transition: background-color 50ms ease-in;
+}
+.meme_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 360px;
+  border-bottom: 1px dotted black;
+}
+.meme_img > img {
+  display: inline-block;
+  max-width: 360px;
+  max-height: 360px;
+}
+
+.user {
+  width: 100%;
+}
+
+.icon > i {
+  transform: scale(1.4);
+}
+.heart > i {
+  transform: scale(1.65);
+  color: rgba(211, 211, 211, 0.363);
+}
+.activeheart {
+  animation-name: likeme;
+  color: rgb(211, 50, 77) !important;
+  animation-duration: 400ms;
+}
+@keyframes likeme {
+  0% {
+    transform: scale(1.65);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1.65);
+  }
+}
+.editors {
+  padding-bottom: 8%;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.trash i {
+  color: rgb(160, 0, 0);
+}
+.usertoggle {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.info {
+  height: 160px;
+  border-radius: 0px 0px 10px 10px;
+  padding: 0% 6% 0% 4%;
+  display: flex;
+  justify-content: space-between;
+}
+.likeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 16%;
+}
+.icon {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.timestamp {
+  font-size: small;
+  color: rgb(158, 158, 158);
+}
+
+@media (max-height: 650px) {
+  .card {
+    transform: scale(0.9);
+  }
+}
+@media (max-width: 625px) {
+  .card {
+    margin-top: 20px;
+    transform: scale(0.97);
+  }
+}
+@media (max-width: 330px) {
+  .card,
+  .meme_img,
+  .info,
+  .memeImgVal {
+    width: 280px;
+    height: auto;
+  }
+  .info {
+    padding: 0px;
+    font-size: small;
+  }
+}
+.likect {
+  font-weight: 500;
+}

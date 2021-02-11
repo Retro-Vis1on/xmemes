@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head.ejs') %>
+  <body>
+    <%- include('partials/overlay.ejs') %> <%- include('partials/nav.ejs') %>
+    <div class="master">
+      <div class="container">
+        <% for(let i of memes){ %>
+        <div class="card <%= i.id %>">
+          <div class="meme_img">
+            <img
+              class="memeImgVal <%= i.id %>"
+              data-src="icons/Spin-1.2s-190px.svg"
+              src="<%=i.url
+            %>"
+              alt=""
+            />
+          </div>
+          <div class="info">
+            <div class="usertoggle">
+              <div class="user">
+                <h2 class="userName <%= i.id %>"><%= i.name %></h2>
+                <p class="timestamp"><%= timer(i.time,i.date) %></p>
+                <p class="userCaption <%= i.id %>"><%= i.caption %></p>
+              </div>
+              <div class="editors">
+                <div class="trash icon <%= i.id %>">
+                  <i class="far fa-trash-alt"></i>
+                </div>
+                <div class="pencil icon <%= i.id %>">
+                  <i class="far fa-edit"></i>
+                </div>
+              </div>
+            </div>
+            <div class="likeButton">
+              <div class="heart icon <%= i.id %>">
+                <i class="fas fa-heart"></i>
+              </div>
+              <span class="likect">
+                <%= i.like %> <%= (i.like!=1)?'likes':'like' %>
+              </span>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+      <button class="showMore <%= size?"":"cloak" %> ">Show More</button>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/pagination.js"></script>
+  </body>
+</html>

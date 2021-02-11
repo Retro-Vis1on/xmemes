@@ -1,0 +1,35 @@
+<form action="/add" method="POST" class="newmeme" onsubmit="return checkMe()">
+  <div class="inputfield">
+    <label for="name"
+      ><input type="text" name="name" id="name" placeholder="Enter your name"
+    /></label>
+    <label for="caption"
+      ><input
+        type="text"
+        name="caption"
+        id="caption"
+        placeholder="Caption goes here"
+    /></label>
+    <label for="url"
+      ><input
+        type="url"
+        name="url"
+        id="url"
+        placeholder="Me ReQUirE uRL ThIs PLaCe"
+    /></label>
+    <p class="alert"></p>
+  </div>
+  <div class="imgAndSubmit">
+    <div class="sample">
+      <img
+        src="icons/gallery-187-902099.png"
+        alt="Please check your URL"
+        id="sampleimg"
+      />
+    </div>
+    <div class="submitAndEdit">
+      <button class="submit" type="submit">Beam Me Up!</button>
+      <button class="editmode cloak">Exit Edit Mode</button>
+    </div>
+  </div>
+</form>

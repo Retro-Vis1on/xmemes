@@ -1,0 +1,68 @@
+.dark {
+  transition: background-color 50ms ease-in;
+  transition: color 50ms ease-in;
+}
+
+* {
+  transition: background-color 50ms ease-in;
+  transition: color 10ms ease-in;
+}
+.darkmode {
+  border: 0px;
+  width: 36px;
+  height: 36px;
+  position: fixed;
+  bottom: 25px;
+  color: #fff;
+  border-radius: 50%;
+  right: 89px;
+  display: flex;
+  outline: none;
+  cursor: pointer;
+  justify-content: center;
+  z-index: 1;
+  align-items: center;
+  background-color: darkblue;
+  box-shadow: 0px 3px 5px 1px darkgray;
+}
+
+.container.dark,
+html.dark,
+body.dark {
+  background-color: hsl(210, 26%, 13%);
+}
+.card.dark {
+  background-color: hsl(207, 23%, 18%);
+  color: white;
+  border-bottom: 3px solid red;
+  box-shadow: 0px 5px 5px black;
+}
+
+.submit.dark {
+  box-shadow: 0px 5px 5px black;
+}
+.showMore.dark {
+  box-shadow: 0px 3px 3px black;
+}
+.editmode.dark {
+  box-shadow: 0px 3px 3px black;
+}
+nav.dark {
+  box-shadow: 0px 3px 3px black;
+}
+.darkmode.dark,
+.toggle.dark {
+  box-shadow: 0px 5px 5px black;
+}
+
+.menu_extra.dark,
+h1.dark {
+  background-color: hsl(207, 23%, 18%);
+  color: #fff;
+}
+input.dark {
+  color: #fff;
+}
+.darkmode.dark {
+  background-color: rgb(233, 161, 27);
+}
