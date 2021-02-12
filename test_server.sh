@@ -1,3 +1,5 @@
+chmod +x ./test_server.sh
+
 chmod +x install.sh
 
 sudo ./install.sh
@@ -10,7 +12,6 @@ chmod +x sleep.sh
 
 ./sleep.sh
 
-chmod +x ./test_server.sh
 curl --location --request GET 'http://localhost:8081/memes'
 
 curl --location --request POST 'http://localhost:8081/memes' \
