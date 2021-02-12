@@ -116,7 +116,13 @@ input.addEventListener("submit", async (e) => {
     message.innerText = "Please check all the fields!";
     return 0;
   }
-  if (input.url.value.match(/\.(jpeg|jpg|gif|png)$/) == null) {
+  if (
+    !(
+      url.value.includes(".jpeg") ||
+      url.value.includes(".jpg") ||
+      url.value.includes(".png")
+    )
+  ) {
     message.classList.remove("cloak");
     message.innerText = "Please enter correct image URL!";
   } else {

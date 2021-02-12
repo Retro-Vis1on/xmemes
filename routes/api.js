@@ -19,7 +19,16 @@ router.get("/memes", async (req, res) => {
   let memes = await Meme.find({}, { like: 0, date: 0, time: 0, __v: 0 })
     .sort({ time: -1 })
     .limit(100);
-  res.send(memes);
+  let newarr = [];
+  for (let meme of memes) {
+    newarr.push({
+      id: meme._id,
+      name: meme.name,
+      url: meme.url,
+      caption: meme.caption,
+    });
+  }
+  res.send(newarr);
 });
 
 router.post("/memes", async (req, res) => {
@@ -30,7 +39,9 @@ router.post("/memes", async (req, res) => {
     temp.url == null ||
     temp.name == null ||
     temp.caption == null ||
-    temp.url.match(/\.(jpeg|jpg|gif|png)$/) == null
+    !temp.url.value.includes(".jpeg") ||
+    !temp.url.value.includes(".jpg") ||
+    !temp.url.value.includes(".png")
   )
     res.sendStatus(400);
   const newMeme = new Meme(temp);
@@ -61,7 +72,9 @@ router.patch("/memes/:id", async (req, res) => {
   if (
     url == null ||
     caption == null ||
-    url.match(/\.(jpeg|jpg|gif|png)$/) == null
+    !url.value.includes(".jpeg") ||
+    !url.value.includes(".jpg") ||
+    !url.value.includes(".png")
   )
     res.sendStatus(400);
   let { n } = await Meme.updateOne(
