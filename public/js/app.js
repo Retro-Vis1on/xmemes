@@ -61,9 +61,11 @@ url.addEventListener("change", async () => {
     return 0;
   }
   if (
-    url.value.includes(".jpeg") ||
-    url.value.includes(".jpg") ||
-    url.value.includes(".png") == null
+    !(
+      url.value.includes(".jpeg") ||
+      url.value.includes(".jpg") ||
+      url.value.includes(".png")
+    )
   ) {
     sample.src = "icons/daily-ui-008-404-page-large.png";
   } else sample.src = url.value;
