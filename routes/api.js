@@ -41,12 +41,14 @@ router.post("/memes", async (req, res) => {
 router.get("/memes/:id", async (req, res) => {
   const { id } = req.params;
   if (idcheck(id)) {
-    const meme = await Meme.find({ _id: id });
-    if (meme.length) {
-      const data = {};
-      data.id = meme.id;
-      data.url = meme.url;
-      data.caption = meme.caption;
+    const meme = await Meme.findById(id);
+    if (meme != null) {
+      let data = {
+        id: meme.id,
+        name: meme.name,
+        url: meme.url,
+        caption: meme.caption,
+      };
       res.send(data);
     } else res.sendStatus(404);
   } else res.sendStatus(404);
@@ -80,7 +82,7 @@ router.patch("/memes/:id", async (req, res) => {
 router.delete("/memes/:id", async (req, res) => {
   const { id } = req.params;
   if (!idcheck(id)) res.sendStatus(400);
-  let cur = await Meme.deleteOne({ _id: id });
+  let { n } = await Meme.deleteOne({ _id: id });
   if (n == 0) res.sendStatus(404);
   res.sendStatus(200);
 });
