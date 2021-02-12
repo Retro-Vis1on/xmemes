@@ -35,7 +35,7 @@ router.post("/memes", async (req, res) => {
     res.sendStatus(400);
   const newMeme = new Meme(temp);
   await newMeme.save();
-  res.sendStatus(newMeme._id);
+  res.send(newMeme._id);
 });
 
 router.get("/memes/:id", async (req, res) => {
