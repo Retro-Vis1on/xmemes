@@ -39,9 +39,9 @@ router.post("/memes", async (req, res) => {
     temp.url == null ||
     temp.name == null ||
     temp.caption == null ||
-    !temp.url.value.includes(".jpeg") ||
-    !temp.url.value.includes(".jpg") ||
-    !temp.url.value.includes(".png")
+    !temp.url.includes(".jpeg") ||
+    !temp.url.includes(".jpg") ||
+    !temp.url.includes(".png")
   )
     res.sendStatus(400);
   const newMeme = new Meme(temp);
@@ -72,9 +72,9 @@ router.patch("/memes/:id", async (req, res) => {
   if (
     url == null ||
     caption == null ||
-    !url.value.includes(".jpeg") ||
-    !url.value.includes(".jpg") ||
-    !url.value.includes(".png")
+    !url.includes(".jpeg") ||
+    !url.includes(".jpg") ||
+    !url.includes(".png")
   )
     res.sendStatus(400);
   let { n } = await Meme.updateOne(
