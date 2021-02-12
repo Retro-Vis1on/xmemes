@@ -32,8 +32,8 @@ app.use((req, res, next) => {
   res.status(404).redirect("/pageNotFound");
 });
 
-const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/memes_reserve";
-//const dbUrl = "mongodb://localhost:27017/memes_reserve";
+//const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/memes_reserve";
+const dbUrl = "mongodb://localhost:27017/memes_reserve";
 
 mongoose
   .connect(dbUrl, {
