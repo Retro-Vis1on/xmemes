@@ -33,6 +33,7 @@ app.use((req, res, next) => {
 });
 
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/memes_reserve";
+
 mongoose
   .connect(dbUrl, {
     useNewUrlParser: true,

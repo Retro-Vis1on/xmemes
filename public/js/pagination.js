@@ -76,6 +76,7 @@ function cardgenerator(meme) {
 }
 
 async function showMore() {
+  document.querySelector(".showMore").setAttribute("disabled", "disabled");
   let memes = await axios.get(`/page/${pg}`);
   pg += 1;
   memes = memes.data;
@@ -84,6 +85,7 @@ async function showMore() {
   }
   for (let meme of memes) cardgenerator(meme);
   setTimeout(activateEvent, 500);
+  document.querySelector(".showMore").removeAttribute("disabled");
 }
 
 document.querySelector(".showMore").addEventListener("click", showMore);
@@ -118,6 +120,7 @@ function deletememe(card, trash, id) {
 
 function editMeme(edit, id) {
   edit.addEventListener("click", () => {
+    document.querySelector(".alert").classList.add("cloak");
     document.querySelector(".editmode").classList.remove("cloak");
     document.querySelector(".menucontents>h1").innerText = "Itsy Bitsy Changes";
     document.querySelector("#name").style.borderBottom = "2px solid red";

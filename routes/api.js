@@ -1,6 +1,7 @@
 let express = require("express");
 let router = express.Router();
 const Meme = require("../model/meme");
+const validator = require("image-url-validator");
 const sanitize = require("mongo-sanitize");
 
 function idcheck(id) {
@@ -26,9 +27,12 @@ router.post("/memes", async (req, res) => {
   let temp = sanitize(req.body);
   temp.date = req.date;
   temp.time = req.time;
-  const newMeme = new Meme(temp);
-  await newMeme.save();
-  res.sendStatus(201);
+  let check = await validator(req.body.url);
+  if (check) {
+    const newMeme = new Meme(temp);
+    await newMeme.save();
+    res.sendStatus(201);
+  } else res.sendStatus(400);
 });
 
 router.get("/memes/:id", async (req, res) => {
@@ -51,6 +55,8 @@ router.patch("/memes/:id", async (req, res) => {
   const { id } = req.params;
   if (!idcheck(id)) res.sendStatus(400);
   if (url == null || caption == null) res.sendStatus(400);
+  let check = await validator(url);
+  if (!check) res.sendStatus(400);
   let { n } = await Meme.updateOne(
     { _id: id },
     {

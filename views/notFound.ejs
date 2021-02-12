@@ -27,11 +27,45 @@
           src="https://thumbs.gfycat.com/ShyDistantIndianrockpython-max-1mb.gif"
           alt=""
         /><br />
-        <h1 style="font-size: 80px; margin: 20px 0px 0px 0px">
+        <h1 style="font-size: 80px; margin: 40px 0px 0px 0px; background: none">
           <span style="color: red">404</span> NOT FOUND!
         </h1>
       </div>
     </div>
-    <script src="js/app.js"></script>
+    <script>
+      let mode = localStorage.getItem("mode");
+      if (mode) {
+        document.querySelector(".darkmode").classList.add("dark");
+        document.querySelector(".darktoggle").classList.remove("fa-moon");
+        document.querySelector(".darktoggle").classList.add("fa-sun");
+        darkmodeupdater();
+      }
+
+      function modedecider(classes) {
+        if (mode) classes.add("dark");
+        else classes.remove("dark");
+      }
+
+      function darkmodeupdater() {
+        modedecider(document.querySelector("body").classList);
+        modedecider(document.querySelector("html").classList);
+        modedecider(document.querySelector(".container").classList);
+        modedecider(document.querySelector("nav").classList);
+        modedecider(document.querySelector(".home").classList);
+        modedecider(document.querySelector(".container h1").classList);
+      }
+
+      document.querySelector(".darkmode").addEventListener("click", () => {
+        let darkbtn = document.querySelector(".darkmode");
+        darkbtn.classList.toggle("dark");
+        document.querySelector(".darktoggle").classList.toggle("fa-moon");
+        document.querySelector(".darktoggle").classList.toggle("fa-sun");
+        if (darkbtn.classList.contains("dark"))
+          localStorage.setItem("mode", "1");
+        else localStorage.removeItem("mode");
+        mode = localStorage.getItem("mode");
+        darkmodeupdater();
+      });
+    </script>
   </body>
 </html>

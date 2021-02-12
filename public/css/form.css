@@ -40,6 +40,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
 }
 input {
   width: 280px;
@@ -67,6 +68,26 @@ input {
   border-radius: 5px 5px 0px 0px;
   font-family: "Rock Salt", cursive;
 }
+.twister {
+  background-color: red;
+  box-shadow: 0px 3px 3px rgb(209, 209, 209);
+  font-family: "Permanent Marker";
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 150px;
+  height: 31px;
+  margin: 2%;
+  border-radius: 0px 104px 0px 104px;
+  font-size: 16px;
+}
+.submit:disabled,
+.twister:disabled {
+  background-color: rgb(255, 136, 136);
+  box-shadow: none;
+  cursor: not-allowed;
+}
 
 .submit {
   border: 0px;
@@ -76,7 +97,7 @@ input {
   background-color: red;
   border-radius: 345px;
   color: white;
-  transform: scale(0.55);
+  transform: scale(0.5);
   box-shadow: 0px 3px 3px 1px rgb(209, 209, 209);
   padding: 15px 0px;
   font-size: 40px;
@@ -126,6 +147,7 @@ input {
   color: red;
   display: inline-block;
   font-size: 13px;
+  font-family: "Poppins", sans-serif;
 }
 @media (max-width: 1120px) {
   .menu_extra {
@@ -163,7 +185,7 @@ input {
   .inputfield {
     width: 80%;
     display: flex;
-    height: 36%;
+    height: 41%;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;

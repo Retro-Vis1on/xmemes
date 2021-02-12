@@ -7,6 +7,9 @@
   transition: background-color 50ms ease-in;
   transition: color 10ms ease-in;
 }
+.twister.dark {
+  box-shadow: 0px 3px 3px black;
+}
 .darkmode {
   border: 0px;
   width: 36px;
@@ -51,7 +54,8 @@ nav.dark {
   box-shadow: 0px 3px 3px black;
 }
 .darkmode.dark,
-.toggle.dark {
+.toggle.dark,
+.home.dark {
   box-shadow: 0px 5px 5px black;
 }
 
@@ -63,6 +67,7 @@ h1.dark {
 input.dark {
   color: #fff;
 }
+
 .darkmode.dark {
   background-color: rgb(233, 161, 27);
 }

@@ -10,10 +10,9 @@
           <div class="meme_img">
             <img
               class="memeImgVal <%= i.id %>"
-              data-src="icons/Spin-1.2s-190px.svg"
               src="<%=i.url
             %>"
-              alt=""
+              onerror="this.onerror=null;this.src='icons/daily-ui-008-404-page-large.png';"
             />
           </div>
           <div class="info">
@@ -44,9 +43,9 @@
         </div>
         <% } %>
       </div>
-      <button class="showMore <%= size?"":"cloak" %> ">Show More</button>
+      <button class="showMore <%= size?"":"cloak" %> " >Show More</button>
     </div>
-
+    <discoTag class="cloak">Hey there Explorer! This site was made by Pratham Singh ^_^</discoTag>
     <script src="js/app.js"></script>
     <script src="js/pagination.js"></script>
   </body>
