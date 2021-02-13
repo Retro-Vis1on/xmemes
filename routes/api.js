@@ -39,14 +39,17 @@ router.post("/memes", async (req, res) => {
     temp.url == null ||
     temp.name == null ||
     temp.caption == null ||
-    !temp.url.value.includes(".jpeg") ||
-    !temp.url.value.includes(".jpg") ||
-    !temp.url.value.includes(".png")
+    !(
+      temp.url.includes(".jpeg") ||
+      temp.url.includes(".jpg") ||
+      temp.url.includes(".png")
+    )
   )
     res.sendStatus(400);
   const newMeme = new Meme(temp);
   await newMeme.save();
-  res.send(newMeme._id);
+  const data = { id: newMeme._id };
+  res.send(data);
 });
 
 router.get("/memes/:id", async (req, res) => {
@@ -72,9 +75,11 @@ router.patch("/memes/:id", async (req, res) => {
   if (
     url == null ||
     caption == null ||
-    !url.value.includes(".jpeg") ||
-    !url.value.includes(".jpg") ||
-    !url.value.includes(".png")
+    !(
+      temp.url.includes(".jpeg") ||
+      temp.url.includes(".jpg") ||
+      temp.url.includes(".png")
+    )
   )
     res.sendStatus(400);
   let { n } = await Meme.updateOne(
@@ -89,7 +94,7 @@ router.patch("/memes/:id", async (req, res) => {
     }
   );
   if (n == 0) res.sendStatus(404);
-  res.sendStatus(201);
+  res.sendStatus(204);
 });
 
 router.delete("/memes/:id", async (req, res) => {
@@ -97,7 +102,7 @@ router.delete("/memes/:id", async (req, res) => {
   if (!idcheck(id)) res.sendStatus(400);
   let { n } = await Meme.deleteOne({ _id: id });
   if (n == 0) res.sendStatus(404);
-  res.sendStatus(200);
+  res.sendStatus(204);
 });
 
 module.exports = router;

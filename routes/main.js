@@ -65,11 +65,12 @@ router.patch("/:id/like/:state", async (req, res) => {
   if (state === "loved")
     await Meme.updateOne({ _id: id }, { $inc: { like: 1 } });
   else await Meme.updateOne({ _id: id }, { $inc: { like: -1 } });
+  res.sendStatus(204);
 });
 
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   await Meme.deleteOne({ _id: id });
-  res.redirect(303, "/");
+  res.sendStatus(204);
 });
 module.exports = router;
