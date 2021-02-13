@@ -32,7 +32,9 @@ router.get("/memes", async (req, res) => {
 });
 
 router.get("/memes/det", async (req, res) => {
-  let memes = await Meme.find({}, { __v: 0,time:0 }).sort({ time: -1 }).limit(100);
+  let memes = await Meme.find({}, { __v: 0, time: 0 })
+    .sort({ time: -1 })
+    .limit(100);
   res.send(memes);
 });
 
@@ -82,8 +84,8 @@ router.get("/memes/:id/det", async (req, res) => {
         name: meme.name,
         url: meme.url,
         caption: meme.caption,
-        likes:meme.like,
-        date:meme.date
+        likes: meme.like,
+        date: meme.date,
       };
       res.send(data);
     } else res.sendStatus(404);
@@ -93,7 +95,7 @@ router.get("/memes/:id/det", async (req, res) => {
 router.patch("/memes/:id", async (req, res) => {
   const { url, caption } = sanitize(req.body);
   const { id } = req.params;
-  if (!idcheck(id)) res.sendStatus(400);
+  if (!idcheck(id)) res.sendStatus(404);
   if (
     url == null ||
     caption == null ||
@@ -121,7 +123,7 @@ router.patch("/memes/:id", async (req, res) => {
 
 router.delete("/memes/:id", async (req, res) => {
   const { id } = req.params;
-  if (!idcheck(id)) res.sendStatus(400);
+  if (!idcheck(id)) res.sendStatus(404);
   let { n } = await Meme.deleteOne({ _id: id });
   if (n == 0) res.sendStatus(404);
   res.sendStatus(204);
