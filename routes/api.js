@@ -31,6 +31,11 @@ router.get("/memes", async (req, res) => {
   res.send(newarr);
 });
 
+router.get("/memes/det", async (req, res) => {
+  let memes = await Meme.find({}, { __v: 0,time:0 }).sort({ time: -1 }).limit(100);
+  res.send(memes);
+});
+
 router.post("/memes", async (req, res) => {
   let temp = sanitize(req.body);
   temp.date = req.date;
@@ -62,6 +67,23 @@ router.get("/memes/:id", async (req, res) => {
         name: meme.name,
         url: meme.url,
         caption: meme.caption,
+      };
+      res.send(data);
+    } else res.sendStatus(404);
+  } else res.sendStatus(404);
+});
+router.get("/memes/:id/det", async (req, res) => {
+  const { id } = req.params;
+  if (idcheck(id)) {
+    const meme = await Meme.findById(id);
+    if (meme != null) {
+      let data = {
+        id: meme.id,
+        name: meme.name,
+        url: meme.url,
+        caption: meme.caption,
+        likes:meme.like,
+        date:meme.date
       };
       res.send(data);
     } else res.sendStatus(404);
