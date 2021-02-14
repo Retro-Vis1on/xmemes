@@ -6,7 +6,7 @@ const sanitize = require("mongo-sanitize");
 function idcheck(id) {
   return id.match(/^[0-9a-fA-F]{24}$/);
 }
-
+//This is used for getting time data of request
 router.use((req, res, next) => {
   const today = new Date();
   const vals = Date().split(" ");

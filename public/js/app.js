@@ -3,7 +3,7 @@ const input = document.querySelector(".newmeme");
 let cards = document.querySelectorAll(".card");
 const url = document.querySelector("#url");
 let btn = document.querySelector(".toggle");
-
+//This handles the form overlay
 btn.addEventListener("click", () => {
   btn.classList.toggle("active");
   document.querySelectorAll(".icon");
@@ -11,6 +11,7 @@ btn.addEventListener("click", () => {
   document.querySelector(".menu").classList.toggle("active");
   document.querySelector(".menucontents").classList.toggle("active");
 });
+//This and following functions handle the dark mode
 let mode = localStorage.getItem("mode");
 if (mode) {
   document.querySelector(".darkmode").classList.add("dark");
@@ -23,7 +24,7 @@ function modedecider(classes) {
   if (mode) classes.add("dark");
   else classes.remove("dark");
 }
-
+//'dark. class is toggled according localstorage and button click
 function darkmodeupdater() {
   modedecider(document.querySelector("body").classList);
   modedecider(document.querySelector("html").classList);
@@ -53,7 +54,7 @@ document.querySelector(".darkmode").addEventListener("click", () => {
   mode = localStorage.getItem("mode");
   darkmodeupdater();
 });
-
+//This handles the sample image section un the form
 url.addEventListener("change", async () => {
   let sample = document.querySelector("#sampleimg");
   if (url.value == "") {
@@ -70,7 +71,7 @@ url.addEventListener("change", async () => {
     sample.src = "icons/daily-ui-008-404-page-large.png";
   } else sample.src = url.value;
 });
-
+//This handles the exit edit mode button
 document.querySelector(".editmode").addEventListener("click", (e) => {
   e.preventDefault();
   document.querySelector(".newmeme").action = `/add`;
@@ -79,12 +80,12 @@ document.querySelector(".editmode").addEventListener("click", (e) => {
   document.querySelector(".menucontents>h1").innerText = "Contribute!";
   document.querySelector("#name").removeAttribute("readonly");
 });
-
+//This handles the twister button
 document.querySelector(".twister").addEventListener("click", async () => {
   document.querySelector(".twister").setAttribute("disabled", "disabled");
   let newMemes = [];
   try {
-    let memes = await axios.get("https://api.imgflip.com/get_memes");
+    let memes = await axios.get("https://api.imgflip.com/get_memes"); // get api
     newMemes = memes.data.data.memes;
     if (newMemes.length == 0) {
       message.classList.remove("cloak");
@@ -102,7 +103,7 @@ document.querySelector(".twister").addEventListener("click", async () => {
     message.innerText = "Twister is having his lunch";
   }
 });
-
+//This handles the form input verfication before submitting
 input.addEventListener("submit", async (e) => {
   e.preventDefault();
   console.log("firing");

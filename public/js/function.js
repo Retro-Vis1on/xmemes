@@ -1,3 +1,5 @@
+//This file is used by ejs page to generate time stamp on first call
+
 function timeDifference(time, date) {
   let cur = new Date().getTime();
   let msPerMinute = 60 * 1000;

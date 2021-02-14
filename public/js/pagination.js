@@ -1,3 +1,4 @@
+//This generates the time stamp
 function timeDifference(time, date) {
   let cur = new Date().getTime();
   let msPerMinute = 60 * 1000;
@@ -17,7 +18,7 @@ function timeDifference(time, date) {
 }
 
 let pg = 2;
-
+//This is used in making icons of the cards
 function iconGenerator(type, id, icon_tag, icon_cat) {
   let icon = document.createElement("div");
   icon.classList.add(type, "icon", id);
@@ -26,7 +27,8 @@ function iconGenerator(type, id, icon_tag, icon_cat) {
   icon.innerHTML = i.outerHTML;
   return icon;
 }
-
+//This is used to make new cards for incoming elements
+//The card element is hardcoded
 function cardgenerator(meme) {
   let card = document.createElement("div");
   card.classList.add("card", meme["_id"]);
@@ -74,7 +76,7 @@ function cardgenerator(meme) {
   info.appendChild(likeButton);
   if (localStorage.getItem("mode")) card.classList.add("dark");
 }
-
+//It handles the show more button
 async function showMore() {
   document.querySelector(".showMore").setAttribute("disabled", "disabled");
   let memes = await axios.get(`/page/${pg}`);
@@ -89,7 +91,7 @@ async function showMore() {
 }
 
 document.querySelector(".showMore").addEventListener("click", showMore);
-
+//This handles the like counter
 function heartupdate(heart, id, ct) {
   heart.addEventListener("click", () => {
     heart.classList.toggle("loved");
@@ -110,14 +112,15 @@ function heartupdate(heart, id, ct) {
     }
   });
 }
-
+//This handles the delete button
 function deletememe(card, trash, id) {
   trash.addEventListener("click", () => {
     card.remove();
     axios.delete(`/${id}`);
   });
 }
-
+//This handles the edit button
+//Same form is used for editing and adding new memes
 function editMeme(edit, id) {
   edit.addEventListener("click", () => {
     document.querySelector(".alert").classList.add("cloak");
@@ -128,7 +131,7 @@ function editMeme(edit, id) {
     let memeimg = document.getElementsByClassName(`memeImgVal ${id}`)[0];
     let user = document.getElementsByClassName(`userName ${id}`)[0];
     let caption = document.getElementsByClassName(`userCaption ${id}`)[0];
-    form.action = `/edit/${id}?_method=PATCH`;
+    form.action = `/edit/${id}?_method=PATCH`; //Switches the action of form to edit route
     document.querySelector("#name").value = user.innerText;
     document.querySelector("#caption").value = caption.innerText;
     document.querySelector("#url").value = memeimg.src;
@@ -137,6 +140,7 @@ function editMeme(edit, id) {
     btn.click();
   });
 }
+//This  updates the event listeners after adding new elements using show more
 function activateEvent() {
   let trashes = document.querySelectorAll(".trash");
   for (let trash of trashes) {
